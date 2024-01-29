@@ -1,0 +1,12 @@
+{% extends 'base-back.html.twig' %}
+
+{% block body %}
+
+        <td><a href="{{ path('participations') }}">Afficher</a></td>
+<h1>{{ form_title }}</h1>
+{{form_start(form_participation,{'attr':{'novalidate': 'novalidate'}})}}
+
+{{ form_widget(form_participation) }}
+{{ form_end(form_participation) }}
+
+{% endblock %}

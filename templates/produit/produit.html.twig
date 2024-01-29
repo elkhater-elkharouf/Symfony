@@ -1,0 +1,74 @@
+
+{% extends 'base-back.html.twig' %}
+
+{% block title %} Produit {% endblock %}
+
+{% block body %}
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/test">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ path('produits') }}">Produits</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path ('category')}}">categorie</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+<h1>Liste des produits</h1>
+<p><a href="{{ path('add_produit') }}"  class="btn btn-success" >Ajouter un produit</a></p>
+
+{% if produit %}
+<table id="produit" class="table table-striped">
+   <thead>
+      <tr>
+        <th>nom</th>
+        <th>couleur</th>
+        <th>prix</th>
+        <th>quantite</th>
+        <th>categorie</th>
+        <th>image</th>
+      </tr>
+    </thead>
+    <tbody>
+{% for produit in produit %}
+    <tr>
+        <thead>
+
+           <td>{{ produit.nom }}</td>
+           <td>{{ produit.couleur }}</td>
+           <td>{{ produit.prix }}</td>
+           <td>{{ produit.quantite }}</td>
+           <td>{{ produit.category.nom }}</td>
+           <td>
+           {% if produit.image is defined %}
+
+           <img src="{{ asset('imgs/')|imagine_filter('carre')~produit.image.nom}}">
+           {%endif%}
+           </td>
+            <td>
+            <a href="{{ path('modify_produit', {'id': produit.id}) }}" class="btn btn-dark">Modifier</a>
+            </td>
+            <td>
+            <a href="{{ path('delete_produit', {'id': produit.id}) }}" class="btn btn-danger" 
+            onclick="return confirm ('Etes-vous sur de supprimer cet produit?');">Supprimer</a>
+            </td>
+            </tr>
+            {% endfor %}
+            
+            </tbody>
+            </table>
+            {% else %}
+            <p>Aucun produit</p>
+            {% endif %}
+           
+{% endblock %}

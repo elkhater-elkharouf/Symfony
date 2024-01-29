@@ -1,0 +1,39 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Publication{% endblock %}
+
+{% block body %}
+    <h1>Publication Table</h1>
+<a class="btn btn-success" href="/publication/listo">Create pdf</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Content</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for publication in publications %}
+            <tr>
+                <td>{{ publication.id }}</td>
+                <td>{{ publication.title }}</td>
+                <td><img src="{{ asset('upload/' ~ publication.image) }}" alt="" width="130" height="130" "></td>
+                <td>{{ publication.content }}</td>
+                <td>
+                        {{ include('publication/_delete_form.html.twig') }}
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('publication_new') }}">Create new</a>
+{% endblock %}

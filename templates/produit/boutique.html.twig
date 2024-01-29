@@ -1,0 +1,113 @@
+
+{% extends 'base-front.html.twig' %}
+{% block img %}Nos Produits {% endblock %}
+{% block title %}Les produits
+{% endblock %}
+ 
+{% block body %}
+ 
+      
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/test">Accueil</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ path('shop') }}">Produits</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('cart_') }}">Panier</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('rech') }}">Recherche</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('trii') }}">Trie par prix</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    <section class="bg-light p-3">
+        <h1>Les produits</h1>
+    </section>
+    <section>
+<div class="form-row align-items-end" >
+ <div class="col">
+   
+ </div>
+ </section>
+
+
+    
+    <section class="row">
+   
+
+<div class="form-row align-items-end" >
+ 
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+  <div class="col">
+ 
+ </div>
+</div>
+ 
+          {% for produit in produit %}
+          
+                <div class="col-4 mt-4">
+                     <div class="border border-dark rounded p-2 clearfix">
+                   
+                     <h2>Article : {{ produit.nom }}</h2>
+                     <h2>Couleur: {{ produit.couleur }}</h2>
+                     <h2>Quantité: {{ produit.quantite }}</h2>
+                     <h2>Catégorie: {{ produit.category.nom }}</h2>
+                    <h2>Prix : {{ produit.prix }} €</h2>
+                    <img class="w-100" src="{{ asset('imgs/')|imagine_filter('carre')~produit.image.nom}}" alt="Image de {{ produit.nom }}">
+                   <hr>
+                    <a href="{{path("add", {id: produit.id})}}" class="btn btn-success">
+                        <i class="bi bi-cart-plus"></i> Ajouter
+                         </a>
+                        <!-- http://127.0.0.1:5500/index.html?titre=C%27est+bien&comment=Super+avis&note=4 -->
+    <form action="" method="post">
+    <br>
+        <div>
+            <label for="titre">Titre </label>
+              <input type="text" name="titre">
+        </div>
+        <br>
+        <div>
+            <label for="commentaire"> Commentaire </label>
+            <textarea name="comment" id="commentaire"> </textarea>
+        </div>
+        <br>
+         <i class="note">Note:</i>
+        <div class="stars">
+       
+            <i class="lar la-star" data-value="1"></i>
+            <i class="lar la-star" data-value="2"></i>
+            <i class="lar la-star" data-value="3"></i>
+            <i class="lar la-star" data-value="4"></i>
+            <i class="lar la-star" data-value="5"></i>
+            
+
+        </div>
+        <br>
+        <input type="hidden" name="note" id="note" value="0">
+        <button type="submit" class="btn btn-success">Valider</button>
+    </form>
+
+    <script src="front-office/js/scripts.js"></script>
+                    </div>
+               </div>
+          {% endfor %}
+          
+    </section>
+  {{ knp_pagination_render(produit) }}  
+{% endblock %}

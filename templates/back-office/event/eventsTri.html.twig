@@ -1,0 +1,43 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Hello ProductController!{% endblock %}
+
+{% block body %}
+
+ 
+
+<h1 align=center>Liste des events</h1>
+<p><a href="{{ path('add_events') }}">Ajouter un event</a></p>
+<p><a href="{{ path('events') }}">Recherche</a></p>
+
+{% for events in events %}
+
+      <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">nom</th>
+                    <th scope="col">place</th>
+                    <th scope="col">date</th>
+                    <th scope="col">price</th>
+                    <th scope="col">idevent</th>
+
+
+                </tr>
+                </thead>
+         
+        <tbody>
+
+            <td>{{ events.nom }}</td>
+            <td>{{ events.place }}</td>
+            <td>{{ events.getDate()|date('d-m-Y ') }}</td>
+            <td>{{ events.price }}</td>
+            <td>{{ events.idevent }}</td>
+            <td><button class="btn btn-primary"><a class="text-light" href="{{ path('modify_events', {'id': events.id}) }}">Modifier</a></button></td>
+        <td> <button class="btn btn-danger" ><a class="text-light" href="{{ path('delete_events', {'id': events.id}) }}">Supprimer</a></button> </td>
+        
+
+        </tbody>
+        
+    </table>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Publication{% endblock %}
+
+{% block body %}
+<section class="probootstrap_section bg-light">
+      <div class="container">
+        <div class="row text-center mb-5 probootstrap-animate">
+          <div class="col-md-12">
+            <h2 class="display-4 border-bottom probootstrap-section-heading">Publications</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+
+           
+         <div class="media probootstrap-media d-flex align-items-stretch mb-4 probootstrap-animate">
+              <center><img class="probootstrap-media-image" src="{{ asset('upload/' ~ publication.image) }}">
+              </img></center>
+              <div class="media-body">
+                <h5 class="mb-3">Title : {{ publication.title }}</h5>
+                <p>Content : {{ publication.content }} </p>
+                <p>Views : {{ publication.abn }} </p>
+                <a href="{{ path('lescom', {'id': publication.id}) }}">Show Comments</a> </td>
+              </div>
+        </div>
+           
+</div>
+        </div>
+      </div>
+    </section>
+
+
+    <a href="{{ path('pubs') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Categorie{% endblock %}
+
+{% block body %}
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/test">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ path('produits') }}">Produits</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path ('category')}}">categorie</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+<h1>Liste des categories</h1>
+<p><a href="{{ path('addcategory') }}"  class="btn btn-success">Ajouter une categorie</a></p>
+{% if category %}
+<table id="category" class="table table-striped">
+   <thead>
+      <tr>
+        <th>type</th>
+        <th>nom</th>
+      </tr>
+    </thead>
+    <tbody>
+{% for category in category %}
+    <tr>
+        <thead>
+
+            <td>{{category.type}}</td>
+            <td>{{category.nom}}</td>
+            <td>
+            <a href="{{ path('modify_category', {'id': category.id}) }}" class="btn btn-dark">Modifier</a>
+            </td>
+            <td>
+            <a href="{{ path('delete_category', {'id': category.id}) }}" class="btn btn-danger" 
+            onclick="return confirm ('Etes-vous sur de supprimer cette categorie?');">Supprimer</a>
+            </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+            {% else %}
+            <p>Aucun categorie</p>
+            {% endif %}
+           
+{% endblock %}

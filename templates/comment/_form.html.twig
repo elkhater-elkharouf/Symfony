@@ -1,0 +1,19 @@
+                        {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+                         {{ form_widget(form.authorName) }}
+                          {% if not form.authorName.vars.valid %}
+                        <div class="alert alert-danger">
+                        {{ form_errors(form.authorName) }}
+                        </div>
+                        {% endif %}
+                        
+                        <br>
+                        {{ form_widget(form.content) }}
+                          {% if not form.content.vars.valid %}
+                        <div class="alert alert-danger">
+                        {{ form_errors(form.content) }}
+                        </div>
+                        {% endif %}
+                        {{ form_widget(form) }}
+                         <button class="btn">{{ button_label|default('comment') }}</button>
+                        {{ form_end(form) }}
+    <br>

@@ -1,0 +1,28 @@
+ <h1>Publication Table</h1>
+
+    <table id="publication" class="table table-striped" style="border=6 cellspacing=12 cellpadding=20 ; width: 100% !important ;border-style:solid ;border-color:black border:1px solid black">
+   <thead>
+      <tr>
+        <th class="my-thead-style" style="width: 35%;">Id</th>  
+        <th class="my-thead-style" style="width: 35%;">Title</th>
+        <th class="my-thead-style" style="width: 35%;">Content</th>
+     
+      </tr>
+      
+    </thead>
+    <tbody class="trial_body">
+
+        
+                    
+            {% for publication in publications %}
+            <tr>
+                <td>{{ publication.id }}</td>
+                <td>{{ publication.title }}</td>
+                <td>{{ publication.content }}</td>
+            
+            </tr>
+            {% endfor %}
+            
+            </tbody>
+            </table>
+       

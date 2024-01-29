@@ -1,0 +1,33 @@
+{% extends 'base-front.html.twig' %}
+
+
+{% block body %}
+        <section class="probootstrap_section bg-light">
+      <div class="container">
+        <div class="row text-center mb-5 probootstrap-animate">
+          <div class="col-md-12">
+            <h2 class="display-4 border-bottom probootstrap-section-heading">comment</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+
+           
+        {% for Comment in comments %}
+         <div class="media probootstrap-media d-flex align-items-stretch mb-4 probootstrap-animate">
+              <div class="media-body">
+                <center><h5 class="mb-3">{{ Comment.AuthorName }}</h5> </center>
+                <p>{{ Comment.content }} </p>
+                <p>{{  Comment.createdAt | date('d/m/y') }} </p> 
+                <br>
+                  <a href="{{ path('comment_edit', {'id': Comment.id}) }}">Edit</a>
+              </div>
+        </div>
+           
+        {% endfor %}
+</div>
+        </div>
+      </div>
+    </section>
+    <!-- END section -->
+{% endblock %}

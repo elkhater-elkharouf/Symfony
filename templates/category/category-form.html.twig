@@ -1,0 +1,6 @@
+{% extends "base-back.html.twig" %}
+
+{% block body %}
+<h1>{{ form_title }}</h1>
+{{ form(form_category , {'attr': { 'novalidate': 'novalidate'}}) }}
+{% endblock %}

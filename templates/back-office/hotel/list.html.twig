@@ -1,0 +1,85 @@
+{% extends 'base-back.html.twig' %}
+
+{% block body %}
+
+
+    <div class="nk-content "><div class="container-fluid"><div class="nk-content-inner"><div class="nk-content-body">
+                    <div class="nk-block-head nk-block-head-sm"><div class="nk-block-between"><div class="nk-block-head-content">
+                                <h3 class="nk-block-title page-title">Liste des Hôtels</h3><div class="nk-block-des text-soft">
+                                    <p>You have total 36 Hôtels</p>
+                                </div>
+                            </div>
+                            <div class="nk-block-head-content">
+                                <div class="toggle-wrap nk-block-tools-toggle">
+                                    <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu">
+                                        <em class="icon ni ni-menu-alt-r"></em>
+                                    </a>
+                                    <div class="toggle-expand-content" data-content="pageMenu">
+                                        <ul class="nk-block-tools g-3"></ul>
+                                    </div>
+                                </div>
+                                </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Nombre d'étoile</th>
+                    <th scope="col">Nombre de chambre</th>
+                    <th scope="col">Nombre d'étage</th>
+                    <th scope="col">Adresse</th>
+                    <th scope="col">Superficie</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Promotion</th>
+
+
+
+
+                </tr>
+                </tr>
+                </thead>
+                <tbody>
+                {% for c in hotel %}
+                    <tr>
+                        <th scope="row">{{ c.id }}</th>
+                        <td>{{c.name}} </td>
+                        <td>{{c.etoile}}</td>
+                        <td>{{c.nombrechambre}}</td>
+                        <td>{{c.etage}}</td>
+                        <td>{{c.adresse}}</td>
+                        <td>{{c.superficie}}</td>
+                        <td>{{c.prix}}</td>
+                        <td>{{c.promotion}}</td>
+
+
+
+                        <td><button class="btn btn-primary"><a class="text-light"  href="{{ path( 'updateh' , {'id':c.id} )}}">update</a></button>       <button class="btn btn-danger" ><a class="text-light" href="{{ path( 'deleteh' , {'id':c.id} )}}">delete</a></button></td>
+
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+            <td><button class="btn btn-primary"><a class="text-light"  href="{{ path( 'addh')}}">ajouter</a></button>
+
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

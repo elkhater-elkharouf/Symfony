@@ -1,0 +1,154 @@
+{% extends 'base-front.html.twig' %}
+ {% block img %}Booking hôtels {% endblock %}
+{% block body %}
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
+
+<link rel="stylesheet" href="{{asset('front-office/css/hotel/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('front-office/css/hotel/animate.css')}}">
+<link rel="stylesheet" href="{{asset('front-office/css/hotel/owl.carousel.min.css')}}">
+<link rel="stylesheet" href="{{asset('front-office/css/hotel/bootstrap-datepicker.css')}}">
+<link rel="stylesheet" href="{{asset('front-office/css/hotel/jquery.timepicker.css')}}">
+<link rel="stylesheet" href="{{asset('front-office/css/hotel/fancybox.min.css')}}">
+<link rel="stylesheet" href="{{asset('front-office/css/hotel/ionicons.min.css')}}">
+<link rel="stylesheet" href="{{asset('front-office/css/hotel/font-awesome.min.css')}}">
+ <link rel="stylesheet" href="{{asset('front-office/css/style.css')}}" type="text/css">
+<link rel="stylesheet" href="{{asset('front-office/css/hotel/stylee.css')}}">
+
+ <section class="section pb-4">
+
+  <div class="container">
+
+   <div class="row check-availabilty" id="next">
+    <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
+
+     <form action="#">
+      <div class="row">
+       <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+        <label for="checkin_date" class="font-weight-bold text-black">Hôtels</label>
+        <div class="field-icon-wrap">
+         <div class="icon"><span class="icon-calendar"></span></div>
+         {{ form_row(form.q) }}
+        </div>
+       </div>
+       <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+        <label for="checkout_date" class="font-weight-bold text-black">Location</label>
+        <div class="field-icon-wrap">
+         <div class="icon"><span class="icon-calendar"></span></div>
+         {{ form_row(form.a) }}
+        </div>
+       </div>
+       <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
+        <div class="row">
+         <div class="col-md-6 mb-3 mb-md-0">
+          <label for="adults" class="font-weight-bold text-black">Price</label>
+          <div class="row">
+
+           {{ form_row(form.min) }}
+
+           {{ form_row(form.max) }}
+
+
+          </div>
+         </div>
+         <div class="col-md-6 mb-3 mb-md-2">
+          <label for="children" class="font-weight-bold text-black">Promotions</label>
+          <div class="field-icon-wrap">
+           {{ form_row(form.promo) }}
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="col-md-6 col-lg-3 align-self-end">
+        <button class="btn btn-primary btn-block text-white">Filter</button>
+       </div>
+      </div>
+     </form>
+    </div>
+
+
+   </div>
+  </div>
+ </section>
+
+
+
+ <div class="container">
+
+
+  {% for c in hotel %}
+   <div class="row">
+
+
+    <div class="col-lg-6 p-0 order-lg-2 order-md-2 col-md-6">
+
+     <img src="/uploads/{{ c.img }}" alt="">
+
+
+    </div>
+
+    <div class="col-lg-6 p-0 order-lg-1 order-md-1 col-md-6">
+
+     <div class="room__text">
+      <p><h3>{{c.name}}</h3>
+      <div class="star">
+       {% for i in 1..c.etoile %}
+        <span class="fa fa-star checked"></span>
+       {% endfor %}
+      </div>
+      </p>
+      <h2><sup>DT</sup>{{c.prix}}<span>/day</span></h2>
+      {% if c.promotion==1 %}
+       <h2 class="text text-warning">PROMO !</h2>
+      {% endif %}
+
+
+      <ul>
+       <li><span>Address:</span>{{c.adresse}}</li>
+       <li><span>Area:</span>{{c.superficie}} m²</li>
+       <li><span>Stage:</span>{{c.etage}}</li>
+       <li><span>Rooms:</span>{{c.nombrechambre}}</li>
+
+      </ul>
+
+      <a href="{{ path('addr' , { 'id' : c.id}) }}" class="btn btn-warning">Booking now</a>
+
+     </div>
+    </div>
+
+
+
+
+   </div>
+  {% endfor %}
+  <div class="row">
+   <div class="col-lg-12">
+    <div class="pagination__number">
+     {{ knp_pagination_render (hotel) }}
+    </div>
+   </div>
+  </div>
+ </div>
+ </section>
+ <style>
+  .star .checked {
+   color: orange;
+  }
+  .fa {
+   display: inline-block;
+   font: normal normal normal 14px/1 FontAwesome;
+   font-size: inherit;
+   text-rendering: auto;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+  }
+
+  }
+ </style>
+ </body>
+{% endblock %}

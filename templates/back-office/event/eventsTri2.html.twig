@@ -1,0 +1,53 @@
+
+
+    {% extends 'tt.html.twig' %}
+
+      
+
+{% block body %}
+
+   
+ <link rel="stylesheet" href="events/test.css">
+
+
+<center>
+  
+  <p>Events</p>
+</center>
+        <p><a href="{{ path('events1') }}">Trier Par prix</a></p>
+
+
+{% for events in events %}
+
+    <div class="snip1265">
+    
+        <div class="plan">
+          <header><i class="ion-ios-navigate-outline"></i>
+            <a href="img/gallery/gallery-1.jpg" ></a>
+            <h4 class="plan-title">
+              {{ events.idevent }}-{{ events.nom }}
+            </h4>
+            <div class="plan-cost"><span class="plan-price">{{ events.price }}DT</span><span class="plan-type"></span></div>
+          </header>
+          <ul class="plan-features">
+            <li>Place:{{ events.place }}<i class="ion-ios-navigate-outline"></i>
+            </li>
+            <li>{{ events.getDate()|date('d-m-Y ') }}
+            </li>
+            <li>festival
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            
+          </ul>
+          <div class="plan-select"><a href="{{ path('add_participation') }}">Réserver</a></div>
+        </div>
+        </div>
+        </body>
+
+        {% endfor %}
+
+      {% endblock %}
+      

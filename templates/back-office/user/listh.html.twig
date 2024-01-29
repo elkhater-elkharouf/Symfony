@@ -1,0 +1,83 @@
+{% extends 'base-back.html.twig' %}
+
+{% block body %}
+
+
+    <div class="nk-content "><div class="container-fluid"><div class="nk-content-inner"><div class="nk-content-body">
+                    <div class="nk-block-head nk-block-head-sm"><div class="nk-block-between"><div class="nk-block-head-content">
+                                <h3 class="nk-block-title page-title">Liste des hôteliers</h3><div class="nk-block-des text-soft">
+                                    
+                                </div>
+                            </div>
+                            <div class="nk-block-head-content">
+                                <div class="toggle-wrap nk-block-tools-toggle">
+                                    <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu">
+                                        <em class="icon ni ni-menu-alt-r"></em>
+                                    </a>
+                                    <div class="toggle-expand-content" data-content="pageMenu">
+                                        <ul class="nk-block-tools g-3"></ul>
+                                    </div>
+                                </div>
+                                </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Hôtelier</th>
+                    <th scope="col">Email</th>
+
+                    <th scope="col">Action</th>
+                    <th scope="col">Etat</th>
+
+                </tr>
+                </tr>
+                </thead>
+                <tbody>
+                {% for c in user %}
+                {% if c.role == '1' %}
+                <tr>
+                    <th scope="row">{{ c.id }}</th>
+                    <td>{{ c.nom }} {{ c.prenom }}  </td>
+                    <td>{{ c.mail }}</td>
+
+                    <td>     
+                    <button class="btn btn-danger" ><a class="text-light" href="{{ path( 'deleteu' , {'id':c.id} )}}">Delete</a></button>
+                    {% if c.enable == NULL %}
+                    <button class="btn btn-warning" ><a class="text-light" href="{{ path( 'disable' , {'t': 'p','id':c.id} )}}">Désactiver</a></button>
+                    <button class="btn btn-secondary" ><a class="text-light" href="{{ path( 'disable' , {'t': 't', 'id':c.id} )}}">Désactiver Temporairement</a></button>
+                    {% elseif c.enable == 1 %}
+                    <button class="btn btn-warning" ><a class="text-light" href="{{ path( 'disable' , {'t': 'p', 'id':c.id} )}}">Désactiver</a></button>
+                    <button class="btn btn-success" ><a class="text-light" href="{{ path( 'enable' , {'id':c.id} )}}">Activer</a></button>
+                    {% endif %}
+                    
+                    </td>
+                    <td> {% if c.enable == NULL %} Active {% elseif c.enable == 1 %} Désactivé Temporairement {% elseif c.enable == 2 %} Désactivé {% endif %}</td> 
+
+                </tr>
+                {% endif %}
+                  
+                {% endfor %}
+                </tbody>
+            </table>
+            <td><button class="btn btn-primary"><a class="text-light"  href="{{ path( 'addu')}}">Ajouter un hôtelier</a></button>
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

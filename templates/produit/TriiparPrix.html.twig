@@ -1,0 +1,89 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title%} Liste des Produits par ordre de prix descendant {% endblock %}
+
+
+
+{% block body %}
+{{ form_start(form) }}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/test1">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ path('shop') }}">Produits</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('cart_') }}">Panier</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('rech') }}">rechercher</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('trii') }}">Trier par prix</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="">Trie par ordre de prix decroissant</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ path('triii') }}">Tri par ordre de prix croissant</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <section class="row">
+<div class="form-row align-items-end" >
+ 
+
+  <div class="col">
+   
+ </div>
+</div>
+ {{ form_end(form) }}
+
+ {% if produit %}
+    <table id="produit" class="table table-striped">
+   
+      </thead>
+      <tbody>
+        {% for produit in produit %}
+          <div class="col-4 mt-4">
+                     <div class="border border-dark rounded p-2 clearfix">
+                   
+                     <h2>{{ produit.nom }}</h2>
+                     <h2>{{ produit.couleur }}</h2>
+                     <h2>{{ produit.quantite }}</h2>
+                     <h2>{{ produit.category.nom }}</h2>
+                    <p>{{ produit.prix }} €</p>
+                    <img class="w-100" src="{{ asset('imgs/')|imagine_filter('carre')~produit.image.nom}}" alt="Image de {{ produit.nom }}">
+                   <hr>
+                    <a href="{{path("add", {id: produit.id})}}" class="btn btn-success">
+                        <i class="bi bi-cart-plus"></i> Ajouter
+                         </a>
+                    </div>
+               </div>
+          {% endfor %}
+          
+      </tbody>
+    </table>
+  {% else %}
+    <p>Aucun produit</p>
+  {% endif %} 
+  </section>
+ 
+{% endblock %}

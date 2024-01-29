@@ -1,0 +1,29 @@
+{% extends 'base-back.html.twig' %}
+{% block body %}
+    <h1>Ajouter un produit</h1>
+
+    {{form_start(formA)}}
+
+    <div class="form-group">
+        <label for="">Type</label>
+        {{ form_widget (formA.type) }}
+    </div>
+    <div class="form-group">
+        <label for="">Couleur</label>
+        {{ form_widget (formA.couleur) }}
+    </div>
+    <div class="form-group">
+        <label for="">Prix</label>
+        {{ form_widget (formA.prix) }}
+    </div>
+    <div class="form-group">
+        <label for="">Quantité </label>
+        {{ form_widget (formA.quantite) }}
+    </div>
+    <
+    <button type="submit" class="btn btn-success">Ajouter Produit</button>
+
+    {{form_end(formA)}}
+
+
+{% endblock %}

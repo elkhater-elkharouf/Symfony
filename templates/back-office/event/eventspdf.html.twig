@@ -1,0 +1,60 @@
+
+
+{% block body %}
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+h2 {
+  font-size: 40px;
+  text-shadow: -1px -1px #0c0, 1px 1px #060, -3px 0 4px #000;
+  font-family:Arial, Helvetica, sans-serif;
+  color: red;
+  padding:16px;
+  font-weight:lighter;
+  -moz-box-shadow: 2px 2px 6px #888;  
+  -webkit-box-shadow: 2px 2px 6px #888;  
+  box-shadow:2px 2px 6px #888;  
+  text-align:center;
+  display:block;
+  margin:16px;
+}
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+<h2>Liste des Evénements</h2>
+<h1>
+<p>Date/Time: <span id="datetime"></span></p><script>var dt = new Date();
+document.getElementById("datetime").innerHTML=dt.toLocaleString();</script></h2>
+<img src=("../images/logo-dark.png") alt="" style="width: 150px; height: 150px;">
+
+{% for events in events %}
+
+
+      <h2></h2>
+
+<table>
+  <tr>
+    <th>nom</th>
+    <th>place</th>
+    <th>date</th>
+        <th>price</th>
+        <th>idevent</th>
+
+  </tr>
+  <tr>
+     <td>{{ events.nom }}</td>
+            <td>{{ events.place }}</td>
+            <td>{{ events.getDate()|date('d-m-Y ') }}</td>
+            <td>{{ events.price }}</td>
+            <td>{{ events.idevent }}</td>>
+  </tr>
+  
+</table>
+{% endfor %}
+{% endblock %}

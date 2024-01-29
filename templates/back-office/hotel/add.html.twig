@@ -1,0 +1,45 @@
+{% extends 'base-back.html.twig' %}
+{% block body %}
+    <h1>Ajouter un hôtel</h1>
+    <div class="form-group col-4">
+        {{form_start(formA, {'attr':{'novalidate': 'novalidate'}})}}
+
+
+        <label for="">Nom</label>
+        {{ form_widget (formA.name) }}
+        {{ form_errors(formA.name)}}
+
+        <label for="">Nombre d'étoile</label>
+        {{ form_widget (formA.etoile) }}
+        {{ form_errors(formA.etoile)}}
+
+        <label for="">Nombre de chambre</label>
+        {{ form_widget (formA.nombrechambre) }}
+        {{ form_errors(formA.nombrechambre)}}
+
+        <label for="">Nombre d'étage</label>
+        {{ form_widget (formA.etage) }}
+        {{ form_errors(formA.etage)}}
+
+        <label for="">Adresse</label>
+        {{ form_widget (formA.adresse) }}
+        {{ form_errors(formA.adresse)}}
+
+        <label for="">Superficie</label>
+        {{ form_widget (formA.superficie) }}
+
+
+        <label for="">Prix</label>
+        {{ form_widget (formA.prix) }}
+        {{ form_errors(formA.prix)}}
+
+        <label for="">Promotion</label>
+        {{ form_widget (formA.promotion) }}
+
+
+        <button type="submit" class="btn btn-success">Ajouter Hotel</button>
+
+        {{form_end(formA)}}
+    </div>
+
+{% endblock %}

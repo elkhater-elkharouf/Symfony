@@ -1,0 +1,41 @@
+
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Hello ProductController!{% endblock %}
+
+{% block body %}
+<h1>Liste des Participants</h1>
+<p><a href="{{ path('add_participation') }}">Ajouter un participation</a></p>
+{% for participation in participation %}
+     <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    
+                    <th scope="col">nom</th>
+                    <th scope="col">prenom</th>
+                    <th scope="col">date nes</th>
+                    <th scope="col">num tel</th>
+                    <th scope="col">adresse</th>
+
+
+                </tr>
+                </tr>
+                </thead>
+         
+        <tbody>
+            <td>{{ participation.id }}</td>
+            <td>{{ participation.nom }}</td>
+            <td>{{ participation.prenom }}</td>
+           <td>{{ participation.getDatanes()|date('d-m-Y ') }}</td>
+            <td>{{ participation.numtel }}</td>
+                        <td>{{ participation.adresse }}</td>
+
+
+<td><button class="btn btn-primary"><a class="text-light" href="{{ path('modify_participation', {'id': participation.id}) }}">Modifier</a></button></td>
+<td><button class="btn btn-danger" ><a class="text-light" href="{{ path('delete_participations', {'id': participation.id}) }}">supprimer</a></button></td>
+
+        </tbody>
+    </table>
+{% endfor %}
+{% endblock %}

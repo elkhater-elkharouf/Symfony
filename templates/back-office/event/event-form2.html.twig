@@ -1,0 +1,9 @@
+{% extends 'base-back.html.twig' %}
+
+{% block body %}
+
+<h1>{{ form_title }}</h1>
+        <td><a href="{{ path('events') }}">Afficher</a></td>
+
+{{ form(form_event) }}
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Hello ProductController!{% endblock %}
+
+{% block body %}
+{{ form_start(form) }}
+
+<div class="form-row align-items-end" >
+ <div class="col">
+   {{ form_row(form.nom) }}
+ </div>
+
+  <div class="col">
+   <div class="form-group">
+      <button type="submit" class="btn btn-success">Rechercher</button>
+
+    </div>
+ </div>
+</div>
+ {{ form_end(form) }}
+ {{ form_start(form) }}
+    <div class="form-row align-items-end" >
+ <div class="col">
+   {{ form_row(form.price) }}
+ </div>
+
+  <div class="col">
+   <div class="form-group">
+
+    </div>
+ </div>
+</div>
+
+ {{ form_end(form) }}
+
+<h1>Liste des events</h1>
+<p><a href="{{ path('add_events') }}">Ajouter un event</a></p>
+<p><a href="{{ path('eventstri') }}">Trier</a></p>
+<p><a href="{{ path('eventspdf') }}">Imprimer pdf</a></p>
+
+
+{% for events in events %}
+
+      <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">nom</th>
+                    <th scope="col">place</th>
+                    <th scope="col">date</th>
+                    <th scope="col">price</th>
+                    <th scope="col">idevent</th>
+
+
+                </tr>
+                </tr>
+                </thead>
+         
+        <tbody>
+
+            <td>{{ events.nom }}</td>
+            <td>{{ events.place }}</td>
+            <td>{{ events.getDate()|date('d-m-Y ') }}</td>
+            <td>{{ events.price }}</td>
+            <td>{{ events.idevent }}</td>
+            <td><button class="btn btn-primary"><a class="text-light" href="{{ path('modify_events', {'id': events.id}) }}">Modifier</a></button></td>
+        <td> <button class="btn btn-danger" ><a class="text-light" href="{{ path('delete_events', {'id': events.id}) }}">Supprimer</a></button> </td>
+        
+
+        </tbody>
+        
+    </table>
+{% endfor %}
+{% endblock %}

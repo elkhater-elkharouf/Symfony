@@ -1,0 +1,83 @@
+{% extends 'base-back.html.twig' %}
+
+{% block body %}
+
+
+    <div class="nk-content "><div class="container-fluid"><div class="nk-content-inner"><div class="nk-content-body">
+                    <div class="nk-block-head nk-block-head-sm"><div class="nk-block-between"><div class="nk-block-head-content">
+                                <h3 class="nk-block-title page-title">Liste des voitures</h3><div class="nk-block-des text-soft">
+                                    <p>You have total 60 voitures </p>
+                                </div>
+                            </div>
+                            <div class="nk-block-head-content">
+                                <div class="toggle-wrap nk-block-tools-toggle">
+                                    <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu">
+                                        <em class="icon ni ni-menu-alt-r"></em>
+                                    </a>
+                                    <div class="toggle-expand-content" data-content="pageMenu">
+                                        <ul class="nk-block-tools g-3"></ul>
+                                    </div>
+                                </div>
+                                </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Matricule</th>
+                    <th scope="col">Marque</th>
+                    <th scope="col">Modele</th>
+                    <th scope="col">Couleur</th>
+                    <th scope="col">Transmission</th>
+                    <th scope="col">Places</th>
+                    <th scope="col">Bagages</th>
+                    <th scope="col">Carburant</th>
+                    <th scope="col">Killometrage</th>
+                    <th scope="col">Prix</th>
+
+                </tr>
+                </tr>
+                </thead>
+                <tbody>
+                {% for c in voiture %}
+                    <tr>
+                        <th scope="row">{{ c.id }}</th>
+                        <td> {{ c.matricule }}  </td>
+                        <td>{{ c.marque }}</td>
+                        <td>{{ c.modele }}</td>
+                        <td>{{ c.couleur }}</td>
+                        <td>{{ c.transmission }}</td>
+                        <td>{{ c.place }}</td>
+                        <td>{{ c.bagage }}</td>
+                        <td>{{ c.carburant }}</td>
+                        <td>{{ c.killometrage }}</td>
+                        <td>{{ c.prix }}</td>
+
+                        <td><button class="btn btn-primary"><a class="text-light"  href="{{ path( 'updatev' , {'id':c.id} )}}">update</a></button>       <button class="btn btn-danger" ><a class="text-light" href="{{ path( 'deletev' , {'id':c.id} )}}">delete</a></button></td>
+
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+            <td><button class="btn btn-primary"><a class="text-light"  href="{{ path( 'addv')}}">ajouter</a></button>
+
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

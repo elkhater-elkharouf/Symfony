@@ -1,0 +1,31 @@
+                        {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+                         {{ form_widget(form.title) }}
+                          {% if not form.title.vars.valid %}
+                        <div class="alert alert-danger">
+                        {{ form_errors(form.title) }}
+                        </div>
+                        {% endif %}
+                         <div class="col-md-12 col-sm-12">
+        <label class="control-label">Image<small>Please add a your image .</small></label>
+        <div class="fileupload fileupload-new" data-provides="fileupload">
+            <div class="fileupload-preview thumbnail"></div>
+            <br>
+            <span class="btn btn-default btn-file">
+                                                    <span class="fileupload-new">Select Image</span>
+                                                    <span class="fileupload-exists">Change</span>
+                                                     {{ form_widget(form.image) }}
+                                                </span>
+            <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload"><i class="fa fa-close"></i></a>
+        </div>
+    </div>
+</div><!-- end row -->
+                        {{ form_widget(form.content) }}
+                          {% if not form.content.vars.valid %}
+                        <div class="alert alert-danger">
+                        {{ form_errors(form.content) }}
+                        </div>
+                        {% endif %}
+                        {{ form_widget(form) }}
+                         <button class="btn">{{ button_label|default('Save') }}</button>
+                        {{ form_end(form) }}
+    <br>

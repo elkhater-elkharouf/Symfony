@@ -1,0 +1,6 @@
+public function show () :
+ {
+return $this->render('index.html.twig', [
+ 'esm_el_variable' => 'valeur_el_variable',
+]);
+}
